@@ -1,0 +1,31 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/cpp
+{
+	"name": "dockerdevenv_arm",
+	"privileged": true,
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+    "remoteUser": "root",
+	"workspaceFolder": "/root/workspace", //! Ordner im container 
+	"workspaceMount": "source=${localWorkspaceFolder},target=/root/workspace,type=bind", // VSCode Workspace
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"terminal.integrated.defaultProfile.linux": "bash"
+			},
+		  "extensions": [
+			"ms-vscode.cmake-tools",
+			"xaver.clang-format",
+			"twxs.cmake",
+			"llvm-vs-code-extensions.vscode-clangd",
+			"vadimcn.vscode-lldb",
+			"cschlosser.doxdocgen",
+			"ms-vscode.cmake-tools",
+			"SteveBushResearch.BuildOutputColorizer",
+			"codeium.codeium"
+		]
+		}
+	  },
+	"postCreateCommand": "gcc -v"
+}

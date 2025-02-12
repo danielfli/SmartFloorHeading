@@ -78,20 +78,23 @@ Put a connectionhomeassistant.json with thw following input to "etc/smartfloorhe
 
 ### Install Lib
 
-boost lib
-
 ```bash
-apt install libboost-all-dev
+apt install libboost-all-dev pkg-config libssl-dev openssl libcurl4-openssl-dev
+
 ```
 
-ETL lib (header only)
+### bmc2835
+
+Download it on the remote target and build it! After that copy it to the chroot
 
 ```bash
-git clone https://github.com/ETLCPP/etl.git
-cd etl
-git checkout <targetVersion>
-cmake -B build .
-cmake --install build/
+wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.75.tar.gz
+tar -zxvf bcm2835-1.75.tar.gz
+cd bcm2835-1.75
+./configure
+make
+sudo make check
+sudo make install
 ```
 
 ### Cross Build
