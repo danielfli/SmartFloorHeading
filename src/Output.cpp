@@ -41,7 +41,7 @@ constexpr std::array<std::string_view, 12> PinName{"RPI_GPIO_P1_11",
                                                    "RPI_GPIO_P1_24",
                                                    "RPI_GPIO_P1_26"};
 
-Output::Output(std::vector<DeviceHeaterID> &vecdeviceoutput, const size_t num, bool verbose) : InitSuccess(false)
+Output::Output(std::vector<DeviceHeaterID> &vecdeviceoutput, const size_t num, bool verbose) : InitSuccess(false), _verbose(verbose)
 {
     InitSuccess = bcm2835_init();
     if (!InitSuccess)
@@ -68,7 +68,7 @@ Output::Output(std::vector<DeviceHeaterID> &vecdeviceoutput, const size_t num, b
 
     for (size_t i = 0; i < count; i++)
     {
-        if (verbose)
+        if (_verbose)
         {
             std::cout << "distributor " << i << " on Pin: " << Pin[i] << " with GPIO name: " << PinName[i] << "\n";
         }
@@ -131,8 +131,11 @@ void Output::TurnOn(const size_t pinId) const
     {
         if (pinId == _output[i].id)
         {
+            if (_verbose)
+            {
             std::cout << "switch "
                       << "pin " << pinId << " - name: " << _output[i].entity_id << " --> on\n";
+            }
             bcm2835_gpio_write(static_cast<uint8_t>(_output[i].id), HIGH);
             return;
         }
@@ -147,8 +150,11 @@ void Output::TurnOff(const size_t pinId) const
     {
         if (pinId == _output[i].id)
         {
+            if (_verbose)
+            {
             std::cout << "switch "
                       << "pin " << pinId << " - name: " << _output[i].entity_id << " --> off\n";
+            }
             bcm2835_gpio_write(static_cast<uint8_t>(_output[i].id), LOW);
             return;
         }

@@ -53,8 +53,10 @@ bool Operational::Run()
     int controllerOutput_X = 0;
     while (true)
     {
+#ifdef DEBUG
         std::cout << "\n\ncylce round: " << ++round_counter << "\n";
         std::cout << "\n\n";
+#endif
         std::cout << "-----------------------------------\n";
 
         for (size_t i = 0; i < distributor.size(); i++)
@@ -119,9 +121,11 @@ bool Operational::Run()
             }
 
             //!Log
+#ifdef DEBUG
             std::cout << std::boolalpha << "Distributor States - pre: " << distributorStatePre.state
                       << " - post: " << distributorStatePost.state << "\n\n";
-        }
+#endif
+                    }
 
         std::this_thread::sleep_for(std::chrono::minutes(1));
     }

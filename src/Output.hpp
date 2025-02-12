@@ -10,6 +10,7 @@ class Output
 {
   private:
     bool InitSuccess;
+    bool _verbose;
     std::vector<DeviceHeaterID> _output;
     static int instance; //ToDo: sigelton create
 

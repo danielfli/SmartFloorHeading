@@ -74,6 +74,7 @@ void TwoLevelController::SetSetpoint_W(double SetValue, double ActualValue)
         break;
     }
 
+#ifdef DEBUG
     std::cout << "______________________________________________________________________________________________\n";
     std::cout << "controller value:\n";
     std::cout << "Set : " << _setvalue_w << " - upLimit : " << _w_upperLimit << " - lowLimit : " << _w_lowerLimit
@@ -82,5 +83,6 @@ void TwoLevelController::SetSetpoint_W(double SetValue, double ActualValue)
     std::cout << " - controller e: " << _e;
     std::cout << " - Output set: " << _y_output;
     std::cout << "\n______________________________________________________________________________________________\n";
+#endif
 }
 } // namespace sfh

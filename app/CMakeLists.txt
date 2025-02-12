@@ -29,7 +29,6 @@ target_link_libraries(${EXECUTABLE_NAME} PUBLIC
     ${Boost_LIBRARIES}
     ${CURL_LIBRARIES}
     bcm2835.a
-    etl::etl
     ${OPENSSL_CRYPTO_LIBRARY}
 )
 

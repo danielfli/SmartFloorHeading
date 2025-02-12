@@ -3,6 +3,10 @@ etc/smartfloorheating/connectiontempapi*
 
 connectiontempapi.json
 
+release_buildarmfh/
+
+chbuild/
+
 out/
 !.vscode/settings.json
 !.vscode/extensions.json

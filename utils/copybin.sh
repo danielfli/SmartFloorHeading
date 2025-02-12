@@ -6,15 +6,15 @@ user=$3
 
 pwd
 
-ping -c2 $ip > /dev/null
+ssh -o ConnectTimeout=5 $user@$ip exit
 if [ $? -ne 0 ]; then
-  echo "Error - no target found $ip !"
+  echo "Error - SSH connection to $ip failed!"
   exit 1
 fi
 
-scp -r include/* $user@$ip:/usr/local/include
-scp -r bin/*     $user@$ip:/usr/local/bin
-scp -r lib/*     $user@$ip:/usr/local/lib
-scp -r etc/*     $user@$ip:/usr/local/etc
+rsync -avh --progress include/*  $user@$ip:/usr/local/include
+rsync -avh --progress bin/*  $user@$ip:/usr/local/bin
+rsync -avh --progress lib/*  $user@$ip:/usr/local/lib
+rsync -avh --progress etc/*  $user@$ip:/usr/local/etc
 
 echo "install success on $ip!"
